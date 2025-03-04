@@ -20,18 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $result = mysqli_query($conn, $sql);
      $row = mysqli_fetch_array($result);
 
-     //     $sqli  = "SELECT * FROM profile where username='.$user'";
-
-     // 	$results = $conn->query($sqli);
-
-     //     $rows=$results->fetch_assoc();
-
-     //$_SESSION['first_name'] = "harshit";
-     // $_SESSION['first_name']= $rows['first_name'];
-
 
      if (isset($row["access_level"]) == "admin") {
           $_SESSION['username'] = $user;
+          $_SESSION['id'] = $row['id'];
 
           $_SESSION['access_level'] = "admin";
           // header("location:public/");

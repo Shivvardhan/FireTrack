@@ -100,18 +100,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
         <div class="row">
             <center>
                 <h2>
-                    <?php
-            date_default_timezone_set("Asia/Kolkata");
-            $h = date('G');
-            echo "<span class='font-sans-serif' style='font-weight:600;'>KANHAIYALAL VINODKUMARI MEMORIAL EYE HOSPITAL</span>";
-            if ($h >= 5 && $h <= 11) {
-              echo "<figure class='text-center'><h3 style = 'font-family: sans-serif;'>Good Morning (" . $_SESSION['username'] . ")</h3></figure>";
-            } else if ($h >= 12 && $h <= 15) {
-              echo "<figure class='text-center'><h3 style = 'font-family: sans-serif;'>Good Afternoon (" . $_SESSION['username'] . ")</h3></figure>";
-            } else {
-              echo "<figure class='text-center'><h3 style = 'font-family: sans-serif;'>Good Evening (" . $_SESSION['username'] . ")</h3></figure>";
-            }
-            ?>
+                    Fire Track
                 </h2>
             </center>
         </div>

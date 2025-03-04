@@ -2,7 +2,7 @@
 $servername = "localhost";
 $dbuser = "root";
 $dbpassword = "";
-$dbname = "drp";
+$dbname = "fire_track";
 
 
 // Create connection

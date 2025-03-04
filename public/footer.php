@@ -1,23 +1,22 @@
 <footer class="footer">
-  <div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
-    <div class="col-12 col-sm-auto text-center">
-      <p class="mb-0 text-600">
-        <span class="d-none d-sm-inline-block">
-          <div class="copyright" align="center">
-            <script>
-              document.write('&copy;');
-              document.write(' 2022 - ');
-              document.write(new Date().getFullYear());
-              document.write(' K.V.M. EYE HOSPITAL - ALL RIGHTS RESERVED.');
-            </script>
-          </div>
-        </span><br class="d-sm-none" />
-      </p>
-    </div>
-    <div class="col-12 col-sm-auto text-center">
+    <div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
+        <div class="col-12 col-sm-auto text-center">
+            <p class="mb-0 text-600">
+                <span class="d-none d-sm-inline-block">
+                    <div class="copyright" align="center">
+                        <script>
+                        document.write('&copy;');
+                        document.write(new Date().getFullYear());
+                        document.write(' Fire Track - ALL RIGHTS RESERVED.');
+                        </script>
+                    </div>
+                </span><br class="d-sm-none" />
+            </p>
+        </div>
+        <div class="col-12 col-sm-auto text-center">
 
+        </div>
     </div>
-  </div>
 </footer>
 </div>
 
@@ -29,16 +28,16 @@
 
 
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $("#inp").change(function() {
-      console.log($("#inp").val());
-      if ($("#inp").val() === "cheque") {
-        $("#inpch").removeAttr('disabled');
-      } else {
-        $("#inpch").attr('disabled', 'disabled');
-      }
+        console.log($("#inp").val());
+        if ($("#inp").val() === "cheque") {
+            $("#inpch").removeAttr('disabled');
+        } else {
+            $("#inpch").attr('disabled', 'disabled');
+        }
     });
-  });
+});
 </script>
 
 
@@ -56,7 +55,9 @@
 <script src="vendors/list.js/list.min.js"></script>
 <script src="assets/js/theme.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.18/sweetalert2.all.min.js" integrity="sha512-4+OQqM/O4AkUlCzcn4hcNN7nFwYTYiuMQlhPjdi0Vcpn2ALkrIStJZkxCNauh9WiY6Fkc0FbelhU13feOuX5/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.18/sweetalert2.all.min.js"
+    integrity="sha512-4+OQqM/O4AkUlCzcn4hcNN7nFwYTYiuMQlhPjdi0Vcpn2ALkrIStJZkxCNauh9WiY6Fkc0FbelhU13feOuX5/A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="vendors/countup/countUp.umd.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <script src="assets/js/flatpickr.js"></script>
