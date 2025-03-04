@@ -7,46 +7,47 @@ if (isset($_SESSION['username'])) {
 
 
 ?>
-  <div class="card mb-3">
-    <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(assets/img/icons/spot-illustrations/corner-4.png);">
+<div class="card mb-3">
+    <div class="bg-holder d-none d-lg-block bg-card"
+        style="background-image:url(assets/img/icons/spot-illustrations/corner-4.png);">
     </div>
     <!--/.bg-holder-->
 
     <div class="card-body position-relative">
-      <div class="row">
-        <div class="col-lg-8">
-          <h3>Create New Password</h3>
-          <p class="mb-0">Please cross check your details.</p>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Create New Password</h3>
+                <p class="mb-0">Please cross check your details.</p>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <div class="col-lg-5 pe-lg-2 mb-3">
+<div class="col-lg-12 pe-lg-2 mb-3">
     <div class="card h-lg-100">
-      <div class="card-body p-4 p-sm-5">
-        <h5 class="text-center">Reset New Password</h5>
-        <!-- <div class="mb-3"><?php //if(isset($message)) { echo $message; } 
-                                ?></div> -->
+        <div class="card-body p-4 p-sm-5">
 
-        <form class="mt-3" method="POST">
-          <div class="mb-3">
-            <label class="form-label"></label>
-            <input class="form-control" type="password" placeholder="Old Password" name="currentPassword" required />
-          </div>
-          <div class="mb-3">
+            <form class="" method="POST">
+                <div class="mb-3">
+                    <label class="form-label"></label>
+                    <input class="form-control" type="password" placeholder="Old Password" name="currentPassword"
+                        required />
+                </div>
+                <div class="mb-3">
 
-            <input class="form-control" type="password" placeholder="New Password" name="newPassword" required />
-          </div>
-          <div class="mb-3">
-            <input class="form-control" type="password" placeholder="Confirm Password" name="confirmPassword" required />
-          </div>
+                    <input class="form-control" type="password" placeholder="New Password" name="newPassword"
+                        required />
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="password" placeholder="Confirm Password" name="confirmPassword"
+                        required />
+                </div>
 
-          <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Set password</button>
-        </form>
-      </div>
+                <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Set password</button>
+            </form>
+        </div>
     </div>
-  </div>
+</div>
 
 <?php
 

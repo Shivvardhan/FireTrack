@@ -35,21 +35,110 @@
             <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
                 <div class="navbar-vertical-content scrollbar">
                     <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+                        <?php 
+                        if($_SESSION['access_level'] == 'admin') {
+                          
+                        ?>
                         <li class="nav-item">
-
                             <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
                                 <div class="col ps-0">
                                     <hr class="mb-0 navbar-vertical-divider" />
                                 </div>
                             </div>
-                            <!-- parent pages--><a class="nav-link" href="index.php" role="button"
-                                aria-expanded="false">
+                            <!-- parent pages-->
+                            <a class="nav-link" href="index.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-home"></span></span><span
                                         class="nav-link-text ps-1">Dashboard</span>
                                 </div>
                             </a>
-                            <!-- parent pages--><a class="nav-link" href="list.php" role="button" aria-expanded="false">
+                            <!-- parent pages-->
+                            <a class="nav-link" href="list.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-file-signature"></span></span><span
+                                        class="nav-link-text ps-1">NOC
+                                        Applications</span>
+                                </div>
+                            </a>
+
+                            <a class="nav-link" href="list.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-clipboard-check"></span></span><span
+                                        class="nav-link-text ps-1">Inspection Applications</span>
+                                </div>
+                            </a>
+                            <a class="nav-link" href="sub_stations.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-truck"></span></span><span
+                                        class="nav-link-text ps-1">Sub-Stations</span>
+                                </div>
+                            </a>
+
+
+
+
+                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                <div class="col-auto navbar-vertical-label">Fire Reports</div>
+
+                                <div class="col ps-0">
+                                    <hr class="mb-0 navbar-vertical-divider" />
+                                </div>
+                            </div>
+
+                            <a class="nav-link" href="new_fire_reports.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-fire-plus"></span></span><span class="nav-link-text ps-1">New
+                                        Reports</span>
+                                </div>
+                            </a>
+
+                            <a class="nav-link" href="assigned_reports.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-fire"></span></span><span class="nav-link-text ps-1">Assigned
+                                        Reports</span>
+                                </div>
+                            </a>
+
+                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+
+                                <div class="col ps-0">
+                                    <hr class="mb-0 navbar-vertical-divider" />
+                                </div>
+                            </div>
+
+                            <!-- parent pages-->
+                            <a class="nav-link" href="../logout.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-sign-out-alt"></span></span><span
+                                        class="nav-link-text ps-1">Logout</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <?php
+                          
+                        }
+                        ?>
+
+                        <?php 
+                        if($_SESSION['access_level'] == 'user') {
+                          
+                        ?>
+                        <li class="nav-item">
+                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                <div class="col ps-0">
+                                    <hr class="mb-0 navbar-vertical-divider" />
+                                </div>
+                            </div>
+                            <!-- parent pages-->
+                            <a class="nav-link" href="index.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-home"></span></span><span
+                                        class="nav-link-text ps-1">Dashboard</span>
+                                </div>
+                            </a>
+                            <!-- parent pages-->
+                            <a class="nav-link" href="list.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-file-signature"></span></span><span
                                         class="nav-link-text ps-1">NOC
@@ -77,39 +166,27 @@
                                     <hr class="mb-0 navbar-vertical-divider" />
                                 </div>
                             </div>
-                            <?php if ($_SESSION['access_level'] == 'admin') {
-              ?>
-                            <!-- parent pages--><a class="nav-link" href="users.php" role="button"
-                                aria-expanded="false">
-                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                            class="far fa-user"></span></span><span
-                                        class="nav-link-text ps-1">Users</span>
-                                </div>
-                            </a>
 
-                            <?php
-              }
-              ?>
-
-                            <!-- parent pages--><a class="nav-link" href="changepass.php" role="button"
-                                aria-expanded="false">
+                            <!-- parent pages-->
+                            <a class="nav-link" href="changepass.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-key"></span></span><span class="nav-link-text ps-1">Change
                                         Password</span>
                                 </div>
                             </a>
-                            <!-- parent pages--><a class="nav-link" href="../logout.php" role="button"
-                                aria-expanded="false">
+                            <!-- parent pages-->
+                            <a class="nav-link" href="../logout.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-sign-out-alt"></span></span><span
                                         class="nav-link-text ps-1">Logout</span>
                                 </div>
                             </a>
-
-
                         </li>
-                    </ul>
-                    </li>
+
+                        <?php
+                          
+                        }
+                        ?>
                     </ul>
 
                 </div>
