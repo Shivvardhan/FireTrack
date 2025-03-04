@@ -213,7 +213,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
             </div>
             <!--/.bg-holder-->
 
-            <div class="card-body h-100 position-relative">
+            <div class="card-body h-100 position-relative" style="padding:10px">
                 <!-- <h6>Orders<span class="badge badge-soft-info rounded-pill ms-2">0.0%</span></h6> -->
                 <div class="row g-0  align-items-center">
                     <div class="col">
@@ -243,17 +243,10 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
             <!--/.bg-holder-->
 
             <div class="card-body position-relative">
-                <h6>Total Consultation <br> Patient (week)<?php
-                                                    if ($differce > 0) {
-                                                      echo "<span class='badge badge-soft-success rounded-pill fs--2 ms-2'> <span class='fas fa-caret-up me-1'></span>" . $differce;
-                                                    } elseif ($differce == 0) {
-                                                    } else {
-                                                      echo " <span class='badge badge-soft-danger rounded-pill fs--2 ms-2'> <span class='fas fa-caret-down me-1'></span>" . $differce;
-                                                    }
-                                                    ?>
+                <h6>NOC Application Status
                 </h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning"
-                    data-countup='{"endValue":<?php echo $rowcount; ?>}'>0</div>
+                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning"
+                >Pending</div>
             </div>
         </div>
     </div>
@@ -264,17 +257,10 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
             </div>
             <!--/.bg-holder-->
 
-            <div class="card-body position-relative">
-                <h6>Total Consultation <br> Patient (month)<?php
-                                                      if ($last_month_diff > 0) {
-                                                        echo "<span class='badge badge-soft-success rounded-pill fs--2 ms-2'> <span class='fas fa-caret-up me-1'></span>" . $last_month_diff;
-                                                      } elseif ($last_month_diff == 0) {
-                                                      } else {
-                                                        echo " <span class='badge badge-soft-danger rounded-pill fs--2 ms-2'> <span class='fas fa-caret-down me-1'></span>" . $last_month_diff;
-                                                      }
-                                                      ?></h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info"
-                    data-countup='{"endValue":<?php echo range_rowcount($first_day, $last_day); ?>}'>0 </div>
+            <div class="card-body  position-relative" style="padding:20px">
+                <h6>Inspection Requests  </h6>
+                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning"
+                    >Pending</div>
 
             </div>
         </div>
@@ -286,228 +272,119 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
             </div>
             <!--/.bg-holder-->
 
-            <div class="card-body position-relative">
-                <h6>Total Consultation <br> Patient (Year)<?php
-                                                    if ($year_diff > 0) {
-                                                      echo "<span class='badge badge-soft-success rounded-pill fs--2 ms-2'> <span class='fas fa-caret-up me-1'></span>" . $year_diff;
-                                                    } elseif ($year_diff == 0) {
-                                                    } else {
-                                                      echo " <span class='badge badge-soft-danger rounded-pill fs--2 ms-2'> <span class='fas fa-caret-down me-1'></span>" . $year_diff;
-                                                    }
-                                                    ?></h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info"
-                    data-countup='{"endValue":<?php echo range_rowcount($present_y_start, $present_y_end); ?>}'>0</div>
+            <div class="card-body position-relative" style="padding:17.5px">
+                <h6>Fire Incidents in Your Area</h6>
+                <div class="display-4 fs-2 mb-2 fw-normal font-sans-serif text-info"
+                    >0</div>
             </div>
         </div>
     </div>
-
-
-</div>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="row g-3 mb-3">
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-1.png);">
-            </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body position-relative">
-                <h6>Total Treatment<br> Patient (week)<?php
-                                                if ($tdifferce > 0) {
-                                                  echo "<span class='badge badge-soft-success rounded-pill fs--2 ms-2'> <span class='fas fa-caret-up me-1'></span>" . $tdifferce;
-                                                } elseif ($tdifferce == 0) {
-                                                } else {
-                                                  echo " <span class='badge badge-soft-danger rounded-pill fs--2 ms-2'> <span class='fas fa-caret-down me-1'></span>" . $tdifferce;
-                                                }
-                                                ?>
-                </h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning"
-                    data-countup='{"endValue":<?php echo $trowcount; ?>}'>0</div>
-            </div>
-        </div>
+    <!-- Pie Chart -->
+    <div class="col-md-6 col-xxl-6">
+    <canvas id="myPieChart" style="max-width:250px" ></canvas>
     </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-2.png);">
-            </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body position-relative">
-                <h6>Total Treatment<br> Patient (month)<?php
-                                                  if ($tlast_month_diff > 0) {
-                                                    echo "<span class='badge badge-soft-success rounded-pill fs--2 ms-2'> <span class='fas fa-caret-up me-1'></span>" . $tlast_month_diff;
-                                                  } elseif ($tlast_month_diff == 0) {
-                                                  } else {
-                                                    echo " <span class='badge badge-soft-danger rounded-pill fs--2 ms-2'> <span class='fas fa-caret-down me-1'></span>" . $tlast_month_diff;
-                                                  }
-                                                  ?></h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info"
-                    data-countup='{"endValue":<?php echo trange_rowcount($first_day, $last_day); ?>}'>0 </div>
-
-            </div>
-        </div>
+    <!-- Bar Graph -->
+    <div class="col-md-6 col-xxl-6">
+        <canvas id="myBarGraph"></canvas>
     </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-2.png);">
-            </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body position-relative">
-                <h6>Total Treatment<br> Patient (Year)<?php
-                                                if ($tyear_diff > 0) {
-                                                  echo "<span class='badge badge-soft-success rounded-pill fs--2 ms-2'> <span class='fas fa-caret-up me-1'></span>" . $tyear_diff;
-                                                } elseif ($tyear_diff == 0) {
-                                                } else {
-                                                  echo " <span class='badge badge-soft-danger rounded-pill fs--2 ms-2'> <span class='fas fa-caret-down me-1'></span>" . $tyear_diff;
-                                                }
-                                                ?></h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info"
-                    data-countup='{"endValue":<?php echo trange_rowcount($present_y_start, $present_y_end); ?>}'>0</div>
-            </div>
-        </div>
-    </div>
-    <?php if($_SESSION['access_level'] == 'admin'){?>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-3.png);">
-            </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body position-relative">
-                <h6>Total Consultation<br> Patient (Today)
-                </h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning"
-                    data-countup='{"endValue":<?php echo rupee_patient_range(date('Y-m-d'),date('Y-m-d')); ?>,"prefix":"₹"}'>
-                    0</div>
-            </div>
-        </div>
-    </div>
-    <?php }?>
-
 </div>
-<?php if($_SESSION['access_level'] == 'admin'){?>
-<div class="row g-3 mb-3">
 
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-1.png);">
-            </div>
-            <!--/.bg-holder-->
+<script>
+// Data for Pie Chart (Fire Services Response Time)
+const fireResponseData = {
+    labels: ['Fast (0-5 mins)', 'Average (6-10 mins)', 'Slow (11-15 mins)', 'Very Slow (16+ mins)'],
+    datasets: [{
+        label: 'Fire Services Response Time',
+        data: [30, 50, 15, 5], // Example data, replace with actual data
+        backgroundColor: ['#4CAF50', '#FFEB3B', '#F44336', '#F44336'], // Green, Yellow, Red
+    }]
+};
 
-            <div class="card-body position-relative">
-                <h6>Total Consultation<br> Patient (week)
-                </h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning"
-                    data-countup='{"endValue":<?php echo rupee_patient_range($week_start,$week_end); ?>,"prefix":"₹"}'>0
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-2.png);">
-            </div>
-            <!--/.bg-holder-->
+// Data for Bar Graph (Safety Score)
+const safetyScoreData = {
+    labels: ['2019', '2020', '2021', '2022', '2023', '2024'], // Added more years
+    datasets: [{
+        label: 'Safety Score',
+        data: [75, 80, 85, 70, 90, 60], // Example scores, replace with actual data
+        backgroundColor: '#007bff', // Blue color
+    }]
+};
 
-            <div class="card-body position-relative">
-                <h6>Total Consultation<br> Patient (month)</h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info"
-                    data-countup='{"endValue":<?php echo rupee_patient_range($first_day, $last_day); ?>,"prefix":"₹"}'>0
-                </div>
+// Pie Chart
+const ctxPie = document.getElementById('myPieChart').getContext('2d');
+const myLineGraph = new Chart(ctxPie, {
+    type: 'line',
+    data: fireResponseData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.1)',
+                }
+            },
+            x: {
+                ticks: {
+                    autoSkip: false
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.1)',
+                }
+            }
+        },
+        tension: 0.4,
+        fill: true,
+        // backgroundColor: 'rgba(0, 123, 255, 0.2)',
+        // borderColor: 'rgba(0, 123, 255, 1)',
+        borderWidth: 3,
+        pointRadius: 6,
+        pointBackgroundColor: '#007bff',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        animation: {
+            duration: 1000,
+            easing: 'easeInOutBounce'
+        }
+    }
+});
 
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-3.png);">
-            </div>
-            <!--/.bg-holder-->
+// Line Graph
+const ctxLine = document.getElementById('myBarGraph').getContext('2d');
+const myBarGraph = new Chart(ctxLine, {
+    type: 'bar',
+    data: safetyScoreData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            },
+            x: {
+                ticks: {
+                    autoSkip: false
+                },
+                barThickness: 10
+            }
+        },
+        // borderWidth: 2
+    }
+});
+</script>
 
-            <div class="card-body position-relative">
-                <h6>Total Consultation<br> Patient (week)
-                </h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning"
-                    data-countup='{"endValue":<?php echo rupee_patient_range($week_start,$week_end); ?>,"prefix":"₹"}'>0
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card overflow-hidden" style="min-width: 12rem">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-2.png);">
-            </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body position-relative">
-                <h6>Total Consultation<br> Patient</h6>
-                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info"
-                    data-countup='{"endValue":<?php echo rupee_patient(); ?>,"prefix":"₹"}'>0</div>
-            </div>
-        </div>
-    </div>
 
 
 </div>
-<?php } ?>
 
 
 
-<div class="row g-0">
-    <?php if (range_rowcount(date('Y-m-d', strtotime("-6 days")), date('Y-m-d'))) { ?>
-    <div class="col-lg-6 pe-lg-2 mb-3">
-        <div class="card h-lg-100 overflow-hidden">
-            <div class="card-header bg-light">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h6 class="mb-0">Daily </h6>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card-body  h-100 p-0">
-                <div id="curve_chart" class="h-100   w-100" data-echart-responsive="true"></div>
-
-
-            </div>
-
-        </div>
-    </div>
-    <?php } ?>
-
-
-    <?php if (range_rowcount(date('Y-m-d', strtotime("-1 months")), date('Y-m-d'))) { ?>
-    <div class="col-lg-6 pe-lg-2 mb-3">
-        <div class="card h-lg-100 overflow-hidden">
-            <div class="card-header bg-light">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h6 class="mb-0">Total Patient this month</h6>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card-body h-100 pe-0">
-                <!-- Find the JS file for the following chart at: src\js\charts\echarts\total-sales.js-->
-                <!-- If you are not using gulp based workflow, you can find the transpiled code at: public\assets\js\theme.js-->
-                <!-- <div class="echart-line-total-sales h-100" data-echart-responsive="true"></div> -->
-
-                <div id="donutchart" class="h-100 mt-n4 w-100" data-echart-responsive="true"></div>
-            </div>
-        </div>
-    </div>
-    <?php } ?>
-</div>
 
 
 
@@ -519,3 +396,4 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
   echo "<script>window.location.href = '../index.php'; </script>";
 }
 ?>
+
