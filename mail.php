@@ -18,8 +18,8 @@ try {
   $mail->isSMTP();                                            //Send using SMTP
   $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-  $mail->Username   = 'kvmeh2015@gmail.com';                     //SMTP username
-  $mail->Password   = 'gykajvaedzvsqgpo';                               //SMTP password
+  $mail->Username   =                      //SMTP username
+  $mail->Password   =                             //SMTP password
   $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
   $mail->Port       = 465;
 
@@ -34,7 +34,7 @@ try {
       $password = $r['password'];
       	$to = $r['emailid'];
       $accountname = $r['username'];
-      $mail->setFrom('contact@kvmeyehospital.com', 'K.V.M. EYE HOSPITAL');
+      $mail->setFrom('contact@firetrack.com', 'Fire Track');
       $mail->addAddress($to, $accountname);
       $subject = "Your Recovered Password";
       $new = generateRandomString();
@@ -51,8 +51,8 @@ try {
       }
 
       $mail->isHTML(true);
-      $mail->Subject = 'YOUR CREDENTIALS | K.V.M. EYE HOSPITAL';
-      $mail->Body    = "<img style='width:300px;height:auto;' src='https://admin.kvmeyehospital.com/public/kvmeh.png' alt='logo'></img><br><strong> do not share your password! </strong> <br> username :- " . $username . "<br>Please use this password to login :-  " . $new . "<br> <br> Regards!<br>K.V.M. EYE HOSPITAL <br><br> <small> if this mail not mean to you please delete it </small>";
+      $mail->Subject = 'YOUR CREDENTIALS | Fire Track';
+      $mail->Body    = "<img style='width:300px;height:auto;' src='https://image.png' alt='logo'></img><br><strong> do not share your password! </strong> <br> username :- " . $username . "<br>Please use this password to login :-  " . $new . "<br> <br> Regards!<br>Fire Track <br><br> <small> if this mail not mean to you please delete it </small>";
       // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
       $mail->send();

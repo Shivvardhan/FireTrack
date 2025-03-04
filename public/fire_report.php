@@ -72,7 +72,7 @@ if (isset($_SESSION['username'])) {
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $report_by = $_SESSION['id'];
+    $report_by = $_SESSION['username'];
     $time = $_POST['time'];
     $location = $_POST['location'];
     $cause_of_fire = $_POST['cause_of_fire'];

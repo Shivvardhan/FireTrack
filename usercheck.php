@@ -25,26 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['username'] = $user;
           $_SESSION['id'] = $row['id'];
 
-          $_SESSION['access_level'] = "admin";
+          $_SESSION['access_level'] = $row['access_level'];
           // header("location:public/");
           // exit();
           echo "<script>";
           echo "window.location.href = 'public/';";
           echo "</script>";
-     } elseif (isset($row["access_level"]) == "user") {
-          $_SESSION['username'] = $user;
-          $_SESSION['access_level'] = "user";
-          header("location:public/");
-          exit();
      } else {
           $_SESSION['message'] = 'WRONG USERNAME OR PASSWORD!';
           echo "<script>window.location.href = 'index.php'; </script>";
      }
 
-     // if ($row['password'] == 12345) {
-     //      header("location:newwuser.php");
-     //      exit();
-     // }
 }
 
 
