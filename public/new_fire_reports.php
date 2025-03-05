@@ -33,6 +33,7 @@ if ($_SESSION['access_level'] == 'admin') {
                         <th style="overflow-wrap: break-word;" scope="col">Fire Strength</th>
                         <th style="overflow-wrap: break-word;" scope="col">Occupants</th>
                         <th style="overflow-wrap: break-word;" scope="col">Remarks</th>
+                        <th style="overflow-wrap: break-word;" scope="col">Photo</th>
                         <th style="overflow-wrap: break-word;" scope="col">Timestamp</th>
                         <th style="overflow-wrap: break-word;" scope="col" width="4%">Assign</th>
 
@@ -60,6 +61,8 @@ if ($_SESSION['access_level'] == 'admin') {
                         <td style="overflow-wrap: break-word;"><?php echo $row['fire_strength'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['occupants'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['remarks'] ?></td>
+                        <td style="overflow-wrap: break-word;"><img src="<?php echo $row['photo'] ?>" class="img-fluid">
+                        </td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['timestamp'] ?></td>
 
                         <td style="overflow-wrap: break-word;">
