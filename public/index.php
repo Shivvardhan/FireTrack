@@ -85,7 +85,12 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
     }
 });
 </script>
+<style>
 
+
+
+
+</style>
 
 
 
@@ -258,7 +263,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
             <!--/.bg-holder-->
 
             <div class="card-body  position-relative" style="padding:20px">
-                <h6>Inspection Requests  </h6>
+                <h6>Renewable  Requests  </h6>
                 <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning"
                     >Pending</div>
 

@@ -106,6 +106,7 @@
                                 </div>
                             </a>
 
+
                             <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
 
                                 <div class="col ps-0">
