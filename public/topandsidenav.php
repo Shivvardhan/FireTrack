@@ -52,19 +52,26 @@
                                         class="nav-link-text ps-1">Dashboard</span>
                                 </div>
                             </a>
+
+                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                <div class="col-auto navbar-vertical-label">NOC Process</div>
+
+                                <div class="col ps-0">
+                                    <hr class="mb-0 navbar-vertical-divider" />
+                                </div>
+                            </div>
                             <!-- parent pages-->
-                            <a class="nav-link" href="list.php" role="button" aria-expanded="false">
+                            <a class="nav-link" href="noc_applications.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-file-signature"></span></span><span
-                                        class="nav-link-text ps-1">NOC
-                                        Applications</span>
+                                        class="nav-link-text ps-1">Assign Substation</span>
                                 </div>
                             </a>
 
                             <a class="nav-link" href="list.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-clipboard-check"></span></span><span
-                                        class="nav-link-text ps-1">Inspection Applications</span>
+                                        class="nav-link-text ps-1">NOC Applications</span>
                                 </div>
                             </a>
                             <a class="nav-link" href="sub_stations.php" role="button" aria-expanded="false">
@@ -89,13 +96,6 @@
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-fire-plus"></span></span><span class="nav-link-text ps-1">New
                                         Reports</span>
-                                </div>
-                            </a>
-
-                             <a class="nav-link" href="new_fire_reports.php" role="button" aria-expanded="false">
-                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                            class="fas fa-fire-plus"></span></span><span class="nav-link-text ps-1">New
-                                        Reports(substation)</span>
                                 </div>
                             </a>
 
@@ -209,7 +209,7 @@
                 <a class="navbar-brand me-1 me-sm-3" href="index.php">
                     <div class="d-flex align-items-center">
                         <!-- <img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /> --><span
-                            class="font-sans-serif">K.V.M. EYE HOSPITAL</span>
+                            class="font-sans-serif">Fire Track</span>
                     </div>
                 </a>
 
