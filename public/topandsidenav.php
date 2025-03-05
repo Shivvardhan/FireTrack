@@ -92,6 +92,13 @@
                                 </div>
                             </a>
 
+                             <a class="nav-link" href="new_fire_reports.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-fire-plus"></span></span><span class="nav-link-text ps-1">New
+                                        Reports(substation)</span>
+                                </div>
+                            </a>
+
                             <a class="nav-link" href="assigned_reports.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-fire"></span></span><span class="nav-link-text ps-1">Assigned
@@ -138,7 +145,7 @@
                                 </div>
                             </a>
                             <!-- parent pages-->
-                            <a class="nav-link" href="list.php" role="button" aria-expanded="false">
+                            <a class="nav-link" href="noc.php" role="button" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-file-signature"></span></span><span
                                         class="nav-link-text ps-1">NOC
