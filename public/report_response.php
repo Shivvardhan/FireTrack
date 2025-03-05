@@ -8,6 +8,14 @@ if ($_SESSION['access_level'] == 'admin') {
 
 ?>
 
+<style>
+.ck-content {
+    min-height: 300px;
+    max-height: 500px;
+}
+</style>
+
+
 <div class="card-body position-relative">
     <div class="row">
         <div class="col-lg-8">
@@ -28,14 +36,11 @@ if ($_SESSION['access_level'] == 'admin') {
                         <th style="overflow-wrap: break-word;" scope="col">ID</th>
                         <th style="overflow-wrap: break-word;" scope="col">Report By</th>
                         <th style="overflow-wrap: break-word;" scope="col">Time</th>
-                        <th style="overflow-wrap: break-word;" scope="col">Location</th>
                         <th style="overflow-wrap: break-word;" scope="col">Cause Of Fire</th>
                         <th style="overflow-wrap: break-word;" scope="col">Fire Strength</th>
-                        <th style="overflow-wrap: break-word;" scope="col">Occupants</th>
+
                         <th style="overflow-wrap: break-word;" scope="col">Remarks</th>
-                        <th style="overflow-wrap: break-word;" scope="col">Photo</th>
-                        <th style="overflow-wrap: break-word;" scope="col">Timestamp</th>
-                        <th style="overflow-wrap: break-word;" scope="col" width="4%">Assign</th>
+                        <th style="overflow-wrap: break-word;" scope="col" width="4%">Action</th>
 
                     </tr>
                 </thead>
@@ -56,14 +61,9 @@ if ($_SESSION['access_level'] == 'admin') {
                         <td style="overflow-wrap: break-word;"><?php echo $row['report_id'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['report_by'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['time'] ?></td>
-                        <td style="overflow-wrap: break-word;"><?php echo $row['location'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['cause_of_fire'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['fire_strength'] ?></td>
-                        <td style="overflow-wrap: break-word;"><?php echo $row['occupants'] ?></td>
                         <td style="overflow-wrap: break-word;"><?php echo $row['remarks'] ?></td>
-                        <td style="overflow-wrap: break-word;"><img src="<?php echo $row['photo'] ?>" class="img-fluid">
-                        </td>
-                        <td style="overflow-wrap: break-word;"><?php echo $row['timestamp'] ?></td>
 
                         <td style="overflow-wrap: break-word;">
 
@@ -105,7 +105,7 @@ if ($_SESSION['access_level'] == 'admin') {
 </div>
 
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content position-relative">
             <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
                 <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
@@ -114,28 +114,48 @@ if ($_SESSION['access_level'] == 'admin') {
             <form action="" method="POST">
                 <div class="modal-body p-0">
                     <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
-                        <h4 class="mb-1" id="modalExampleDemoLabel">Assign Sub-Station</h4>
+                        <h4 class="mb-1" id="modalExampleDemoLabel">After Incident Report</h4>
                     </div>
                     <div class="p-4 pb-0">
-                        <div class=" mb-3">
-                            <label class="form-label" for="exampleFormControlInput1">Nearest Sub-Stations</label>
-                            <select class="form-select" name="sub_station" required>
-                                <option selected value="">select sub-station</option>
-                                <option value="Giraz Nagar">Giraz Nagar</option>
-                                <option value="Lajpat Nagar">Lajpat Nagar</option>
-                                <option value="Regal Sqaure">Regal Sqaure</option>
-                            </select>
+                        <div class="mb-3">
+                            <label class="form-label" for="exampleFormControlTextarea1">Enter Detailed Report</label>
+                            <textarea id="exampleFormControlTextarea1" name="sub_station"
+                                class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                    <!-- <button class="btn btn-primary" type="button" name="change">change price</button> -->
-                    <input type="submit" class="btn btn-primary" value="Assign" name="assign">
+                    <input type="submit" class="btn btn-primary" value="Submit" name="submit">
                 </div>
             </form>
         </div>
     </div>
+</div>
+
+
+<!-- CKEditor Script -->
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+<!-- Initialize CKEditor with Height -->
+<script>
+ClassicEditor
+    .create(document.querySelector('#exampleFormControlTextarea1'))
+    .catch(error => {
+        console.error(error);
+    });
+</script>
+
+</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+    <!-- <button class="btn btn-primary" type="button" name="change">change price</button> -->
+    <input type="submit" class="btn btn-primary" value="UPDATE" name="post">
+</div>
+</form>
+</div>
+</div>
 </div>
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
