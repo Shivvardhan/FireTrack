@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document & Image Text Extractor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- PDF.js for PDF files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <!-- Mammoth.js for DOCX files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.0/mammoth.browser.min.js"></script>
+    <!-- Tesseract.js for image text extraction -->
+    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    <style>
+        body { 
+            background-color: #f8f9fa;
+            padding: 20px; 
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .upload-section {
+            border: 2px dashed #ddd;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-section:hover {
+            border-color: #0d6efd;
+            background-color: #f8f9fa;
+        }
+        .text-output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            min-height: 100px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+        }
+        #uploadIcon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .file-info {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .supported-formats {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+            display: none;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            margin: 20px 0;
+            display: none;
+            border-radius: 5px;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #0d6efd;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            font-size: 0.8em;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4">Document & Image Text Extractor</h2>
+    
+    <div class="upload-section" id="dropZone">
+        <div id="uploadIcon">📄</div>
+        <input type="file" id="fileInput" 
+               accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg" 
+               style="display: none;">
+        <label for="fileInput" class="btn btn-primary mb-3">Choose File</label>
+        <div>or drag and drop file here</div>
+        <div class="file-info" id="fileInfo">No file chosen</div>
+        <div class="supported-formats">
+            Supported formats: PDF, DOC, DOCX, TXT, RTF, PNG, JPG, JPEG
+        </div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <img id="previewImage" class="preview-image">
+
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+        <div class="progress-text" id="progressText">Processing: 0%</div>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="mt-2">Extracting text...</div>
+    </div>
+
+    <div class="text-output" id="textOutput">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Extracted Text:</h4>
+            <div>
+                <button class="btn btn-sm btn-primary me-2" id="copyButton">
+                    Copy Text
+                </button>
+                <button class="btn btn-sm btn-secondary" id="newFileButton">
+                    New File
+                </button>
+            </div>
+        </div>
+        <pre id="extractedText"></pre>
+    </div>
+</div>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const fileInfo = document.getElementById('fileInfo');
+    const loading = document.getElementById('loading');
+    const textOutput = document.getElementById('textOutput');
+    const extractedText = document.getElementById('extractedText');
+    const copyButton = document.getElementById('copyButton');
+    const newFileButton = document.getElementById('newFileButton');
+    const errorMessage = document.getElementById('errorMessage');
+    const previewImage = document.getElementById('previewImage');
+    const progressBar = document.getElementById('progressBar');
+    const progressBarFill = document.getElementById('progressBarFill');
+    const progressText = document.getElementById('progressText');
+
+    // Handle file selection
+    fileInput.addEventListener('change', handleFileSelect);
+
+    // Drag and drop handlers
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = '#0d6efd';
+    });
+
+    dropZone.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = '#ddd';
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = '#ddd';
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFile(files[0]);
+        }
+    });
+
+    // Copy button handler
+    copyButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(extractedText.textContent)
+            .then(() => {
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Text';
+                }, 2000);
+            });
+    });
+
+    // New file button handler
+    newFileButton.addEventListener('click', () => {
+        fileInput.value = '';
+        fileInfo.textContent = 'No file chosen';
+        textOutput.style.display = 'none';
+        errorMessage.style.display = 'none';
+        previewImage.style.display = 'none';
+        progressBar.style.display = 'none';
+        dropZone.style.display = 'block';
+    });
+
+    function handleFileSelect(e) {
+        const file = e.target.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    }
+
+    function handleFile(file) {
+        const fileType = file.name.split('.').pop().toLowerCase();
+        fileInfo.textContent = file.name;
+        errorMessage.style.display = 'none';
+        loading.style.display = 'block';
+        textOutput.style.display = 'none';
+        previewImage.style.display = 'none';
+        progressBar.style.display = 'none';
+
+        // Image files
+        if(['png', 'jpg', 'jpeg'].includes(fileType)) {
+            extractImageText(file);
+        }
+        // Other document types
+        else {
+            switch(fileType) {
+                case 'pdf':
+                    extractPDFText(file);
+                    break;
+                case 'docx':
+                    extractDOCXText(file);
+                    break;
+                case 'txt':
+                case 'rtf':
+                    extractTXTText(file);
+                    break;
+                default:
+                    showError('Unsupported file format');
+                    loading.style.display = 'none';
+            }
+        }
+    }
+
+    async function extractPDFText(file) {
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+            let fullText = '';
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                const pageText = textContent.items.map(item => item.str).join(' ');
+                fullText += pageText + '\n\n';
+            }
+
+            showExtractedText(fullText);
+        } catch (error) {
+            showError('Error extracting PDF text: ' + error.message);
+        }
+    }
+
+    async function extractDOCXText(file) {
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const result = await mammoth.extractRawText({arrayBuffer});
+            showExtractedText(result.value);
+        } catch (error) {
+            showError('Error extracting DOCX text: ' + error.message);
+        }
+    }
+
+    function extractTXTText(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            showExtractedText(e.target.result);
+        };
+        reader.onerror = function() {
+            showError('Error reading text file');
+        };
+        reader.readAsText(file);
+    }
+
+    async function extractImageText(file) {
+        try {
+            // Show image preview
+            const imageUrl = URL.createObjectURL(file);
+            previewImage.src = imageUrl;
+            previewImage.style.display = 'block';
+            progressBar.style.display = 'block';
+            loading.style.display = 'none';
+
+            // Initialize Tesseract
+            const worker = Tesseract.createWorker({
+                logger: progress => {
+                    if (progress.status === 'recognizing text') {
+                        const percent = Math.round(progress.progress * 100);
+                        progressBarFill.style.width = `${percent}%`;
+                        progressText.textContent = `Processing: ${percent}%`;
+                    }
+                }
+            });
+
+            await worker.load();
+            await worker.loadLanguage('eng');
+            await worker.initialize('eng');
+
+            const result = await worker.recognize(file);
+            await worker.terminate();
+
+            // Show results
+            showExtractedText(result.data.text);
+            progressBar.style.display = 'none';
+
+        } catch (error) {
+            showError('Error extracting text from image: ' + error.message);
+            progressBar.style.display = 'none';
+        }
+    }
+
+    function showExtractedText(text) {
+        loading.style.display = 'none';
+        textOutput.style.display = 'block';
+        extractedText.textContent = text.trim();
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        loading.style.display = 'none';
+        progressBar.style.display = 'none';
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

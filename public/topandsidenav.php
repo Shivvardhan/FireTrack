@@ -188,6 +188,73 @@
                           
                         }
                         ?>
+                        <?php 
+                        if($_SESSION['access_level'] == 'station') {
+                          
+                        ?>
+                        <li class="nav-item">
+                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                <div class="col ps-0">
+                                    <hr class="mb-0 navbar-vertical-divider" />
+                                </div>
+                            </div>
+                            <!-- parent pages-->
+                            <a class="nav-link" href="index.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-home"></span></span><span
+                                        class="nav-link-text ps-1">Dashboard</span>
+                                </div>
+                            </a>
+                            <!-- parent pages-->
+                            <a class="nav-link" href="noc.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-file-signature"></span></span><span
+                                        class="nav-link-text ps-1">NOC
+                                        Application</span>
+                                </div>
+                            </a>
+
+                            <a class="nav-link" href="list.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-clipboard-check"></span></span><span
+                                        class="nav-link-text ps-1">Inspection</span>
+                                </div>
+                            </a>
+
+                            <a class="nav-link" href="fire_report.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-fire"></span></span><span class="nav-link-text ps-1">Fire
+                                        Report</span>
+                                </div>
+                            </a>
+
+
+                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                <div class="col ps-0">
+                                    <hr class="mb-0 navbar-vertical-divider" />
+                                </div>
+                            </div>
+
+                            <!-- parent pages-->
+                            <a class="nav-link" href="changepass.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-key"></span></span><span class="nav-link-text ps-1">Change
+                                        Password</span>
+                                </div>
+                            </a>
+                            <!-- parent pages-->
+                            <a class="nav-link" href="../logout.php" role="button" aria-expanded="false">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-sign-out-alt"></span></span><span
+                                        class="nav-link-text ps-1">Logout</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <?php
+                          
+                        }
+                        ?>
                     </ul>
 
                 </div>

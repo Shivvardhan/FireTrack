@@ -211,85 +211,67 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=Gwalior&units=metric&ap
 
 
 <div class="row g-3 mb-3">
-    <div class="col-md-6 col-xxl-3 ">
+    <div class="col-md-6 col-xxl-3">
         <div class="card overflow-hidden h-100" style="min-width: 12rem">
             <div class="bg-holder bg-card"
                 style="background-image:url(assets/img/icons/spot-illustrations/corner-3.png);">
             </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body h-100 position-relative" style="padding:10px">
-                <!-- <h6>Orders<span class="badge badge-soft-info rounded-pill ms-2">0.0%</span></h6> -->
-                <div class="row g-0  align-items-center">
-                    <div class="col">
-                        <div class="d-flex align-items-center"><img class="me-3" id="icon" alt=""
-                                style="width: 60px!important;" />
-                            <div>
-                                <h6 id="city" class="mb-2"></h6>
-                                <div class="fs--2 fw-semi-bold">
-                                    <div id="desc" class="text-warning"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto text-center ps-2">
-                        <div id="temp" class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1"></div>
-                        <div id="min_max" class="fs--1 text-800"></div>
-                    </div>
-                </div>
+            <div class="card-body position-relative">
+                <h6>Total Approved NOCs</h6>
+                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-success">247</div>
+                <p class="mb-0 fs--1 text-success"><span class="me-2">↑ 13%</span>from last month</p>
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-xxl-3">
         <div class="card overflow-hidden" style="min-width: 12rem">
             <div class="bg-holder bg-card"
                 style="background-image:url(assets/img/icons/spot-illustrations/corner-1.png);">
             </div>
-            <!--/.bg-holder-->
-
             <div class="card-body position-relative">
-                <h6>NOC Application Status
-                </h6>
-                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning"
-                >Pending</div>
+                <h6>Pending Applications</h6>
+                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning">32</div>
+                <p class="mb-0 fs--1">Requires Review</p>
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-xxl-3">
         <div class="card overflow-hidden" style="min-width: 12rem">
             <div class="bg-holder bg-card"
                 style="background-image:url(assets/img/icons/spot-illustrations/corner-2.png);">
             </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body  position-relative" style="padding:20px">
-                <h6>Renewable  Requests  </h6>
-                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-warning"
-                    >Pending</div>
-
+            <div class="card-body position-relative">
+                <h6>Upcoming Renewals</h6>
+                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-danger">15</div>
+                <p class="mb-0 fs--1">Next 30 Days</p>
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-xxl-3">
         <div class="card overflow-hidden" style="min-width: 12rem">
             <div class="bg-holder bg-card"
                 style="background-image:url(assets/img/icons/spot-illustrations/corner-2.png);">
             </div>
-            <!--/.bg-holder-->
-
-            <div class="card-body position-relative" style="padding:17.5px">
-                <h6>Fire Incidents in Your Area</h6>
-                <div class="display-4 fs-2 mb-2 fw-normal font-sans-serif text-info"
-                    >0</div>
+            <div class="card-body position-relative">
+                <h6>Recent Fire Reports</h6>
+                <div class="display-4 fs-1 mb-2 fw-normal font-sans-serif text-info">8</div>
+                <p class="mb-0 fs--1">Last 7 Days</p>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</div>
+
+<?php if($_SESSION['access_level'] == 'user') { ?>
+<!-- Charts section only visible for users -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="row g-3 mb-3">
     <!-- Pie Chart -->
     <div class="col-md-6 col-xxl-6">
-    <canvas id="myPieChart" style="max-width:250px" ></canvas>
+        <canvas id="myPieChart" style="max-width:250px" ></canvas>
     </div>
     <!-- Bar Graph -->
     <div class="col-md-6 col-xxl-6">
@@ -383,8 +365,7 @@ const myBarGraph = new Chart(ctxLine, {
     }
 });
 </script>
-
-
+<?php } ?>
 
 </div>
 
@@ -401,4 +382,5 @@ const myBarGraph = new Chart(ctxLine, {
   echo "<script>window.location.href = '../index.php'; </script>";
 }
 ?>
+
 
